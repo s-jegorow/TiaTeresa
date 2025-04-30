@@ -1,0 +1,66 @@
+﻿@model Vokabel
+
+<br>
+<div><center><strong>Frage Nummer <span id="frageNummer"></span></strong></center></div>
+<div><center>Was heißt @Model.Spanisch auf Deutsch?</center></div>
+<br>
+<center>
+    <form id="trainerForm">
+        <input type="hidden" name="fragespanisch" value="@Model.Spanisch" />
+        <input type="hidden" name="fragedeutsch" value="@Model.Deutsch" />
+        <input type="text" id="eingabe" name="eingabe" autocomplete="off" value="" />
+        <input type="submit" value="Prüfen" />
+    </form>
+</center>
+
+
+
+<div><center><strong>Punkte: <span id="korrekt"></span></strong></center></div>
+<br>
+<br>
+<center><input type="button" id="clearlocalstorage" value="Clear" /></center>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // Anzeige der aktuellen Frage
+    let runden = parseInt(localStorage.getItem("runden") ?? "0");
+    document.getElementById("frageNummer").innerText = runden + 1;
+
+    let korrekt = parseInt(localStorage.getItem("korrekt") ?? "0");
+    document.getElementById("korrekt").innerText = korrekt;
+
+
+    //Local Storage löschen
+	$("#clearlocalstorage").on("click", function () {
+		localStorage.clear();
+		alert("Local Storage gelöscht");
+        location.reload();
+	});
+
+
+    // Formular absenden + zählen
+    $("#trainerForm").on("submit", function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("Trainer", "Vokabel")",
+            data: $(this).serialize(),
+            success: function (response) {
+                    alert(response);
+
+                    runden++;
+                    if (response.includes("Korrekt")) {
+                    korrekt++;
+                    }
+
+                    localStorage.setItem("runden", runden);
+                    localStorage.setItem("korrekt", korrekt);
+
+                    location.reload();
+
+
+            }
+        });
+    });
+</script>
