@@ -27,3 +27,4 @@ Aktuell:
 - Kurzgeschichten mit satzweiser Übersetzung
 - Administrationsbereich zum Verwalten von Inhalten
 
+![Screenshot](screenshottia.jpg)
