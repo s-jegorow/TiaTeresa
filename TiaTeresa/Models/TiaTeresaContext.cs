@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TiaTeresa.Models;
 
 namespace TiaTeresa.Models
 {
@@ -8,6 +9,9 @@ namespace TiaTeresa.Models
         { }
 
         public DbSet<Vokabel> Vokabel { get; set; }
+        
+        public DbSet<Geschichte> Geschichte { get; set; }
+      
     }
 }
 

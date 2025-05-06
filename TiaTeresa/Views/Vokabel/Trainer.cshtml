@@ -1,24 +1,30 @@
 ﻿@model Vokabel
 
-<br>
-<div><center><strong>Frage Nummer <span id="frageNummer"></span></strong></center></div>
-<div><center>Was heißt @Model.Spanisch auf Deutsch?</center></div>
-<br>
-<center>
-    <form id="trainerForm">
+
+<div class="container text-center mt-4">
+    <div class="d-flex justify-content-center align-items-center gap-3 mt-3">
+        <h5 class="mb-0">
+            <strong>Frage <span id="frageNummer"></span> / Punkte: <span id="korrekt"></span></strong>
+        </h5>
+        <button id="clearlocalstorage" class="btn btn-danger py-1">zurücksetzen</button>
+    </div>
+
+    <p class="mt-3 fs-4">Was heißt <strong>@Model.Spanisch</strong> auf Deutsch?</p>
+
+    <form id="trainerForm" class="d-flex flex-column align-items-center gap-2">
         <input type="hidden" name="fragespanisch" value="@Model.Spanisch" />
         <input type="hidden" name="fragedeutsch" value="@Model.Deutsch" />
-        <input type="text" id="eingabe" name="eingabe" autocomplete="off" value="" />
-        <input type="submit" value="Prüfen" />
+        <input type="text" id="eingabe" name="eingabe" class="form-control w-50" autocomplete="off" />
+        <button type="submit" class="btn btn-primary">Prüfen</button>
     </form>
-</center>
+
+    <div id="ergebnis" class="mt-3 fs-5 fw-bold"></div>
+
+ 
+</div>
 
 
 
-<div><center><strong>Punkte: <span id="korrekt"></span></strong></center></div>
-<br>
-<br>
-<center><input type="button" id="clearlocalstorage" value="Clear" /></center>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -33,13 +39,14 @@
     //Local Storage löschen
 	$("#clearlocalstorage").on("click", function () {
 		localStorage.clear();
-		alert("Local Storage gelöscht");
+		alert("Die Punkte wurden zurückgesetzt");
         location.reload();
 	});
 
 
-    // Formular absenden + zählen
+    // Formular absenden + ausgabe mit Timeout + zählen
     $("#trainerForm").on("submit", function (e) {
+        $("#trainerForm input[type=submit]").prop("disabled", true);
         e.preventDefault();
 
         $.ajax({
@@ -47,7 +54,13 @@
             url: "@Url.Action("Trainer", "Vokabel")",
             data: $(this).serialize(),
             success: function (response) {
-                    alert(response);
+                        if (response.includes("Korrekt")) {
+                             $("#ergebnis").css("color", "green");}
+                        else { 
+                             $("#ergebnis").css("color", "red");}
+
+    $("#ergebnis").text(response);
+
 
                     runden++;
                     if (response.includes("Korrekt")) {
@@ -57,7 +70,9 @@
                     localStorage.setItem("runden", runden);
                     localStorage.setItem("korrekt", korrekt);
 
-                    location.reload();
+                        setTimeout(function () {
+                        location.reload();
+                        }, 1700); 
 
 
             }

@@ -7,63 +7,74 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TiaTeresa.Models;
 
+
 namespace TiaTeresa.Controllers
 {
-    
-    public class VokabelController : Controller
+    public class GeschichteController : Controller
     {
         private readonly TiaTeresaContext _context;
 
-        public VokabelController(TiaTeresaContext context)
+        public GeschichteController(TiaTeresaContext context)
         {
             _context = context;
         }
-        
-        // GET: Vokabel INDEX METHODE
+
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Vokabel.ToListAsync());
+            var alleGeschichten =  _context.Geschichte.ToList();
+
+
+            return View(alleGeschichten);
         }
 
 
-   #region CRUD aus Scaffold
+
+        // GET: Geschichte/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            var vokabel = await _context.Vokabel
+            var geschichte = await _context.Geschichte
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (vokabel == null)
+            if (geschichte == null)
             {
                 return NotFound();
             }
 
-            return View(vokabel);
+            ViewBag.Deutsch = geschichte?.Deutsch?.Split('|') ?? Array.Empty<string>();
+            ViewBag.Spanisch = geschichte?.Spanisch?.Split('|') ?? Array.Empty<string>();
+
+            return View(geschichte);
         }
 
-      
+        // GET: Geschichte/Create
         public IActionResult Create()
         {
             return View();
         }
 
+        // POST: Geschichte/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Spanisch,Deutsch")] Vokabel vokabel)
+        public async Task<IActionResult> Create([Bind("Id,TitelSpanisch,TitelDeutsch,Spanisch,Deutsch,Niveau")] Geschichte geschichte)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(vokabel);
+                _context.Add(geschichte);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(vokabel);
+            return View(geschichte);
         }
 
-      
+        // GET: Geschichte/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -71,20 +82,22 @@ namespace TiaTeresa.Controllers
                 return NotFound();
             }
 
-            var vokabel = await _context.Vokabel.FindAsync(id);
-            if (vokabel == null)
+            var geschichte = await _context.Geschichte.FindAsync(id);
+            if (geschichte == null)
             {
                 return NotFound();
             }
-            return View(vokabel);
+            return View(geschichte);
         }
 
-        
+        // POST: Geschichte/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Spanisch,Deutsch")] Vokabel vokabel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,TitelSpanisch,TitelDeutsch,Spanisch,Deutsch,Niveau")] Geschichte geschichte)
         {
-            if (id != vokabel.Id)
+            if (id != geschichte.Id)
             {
                 return NotFound();
             }
@@ -93,12 +106,12 @@ namespace TiaTeresa.Controllers
             {
                 try
                 {
-                    _context.Update(vokabel);
+                    _context.Update(geschichte);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VokabelExists(vokabel.Id))
+                    if (!GeschichteExists(geschichte.Id))
                     {
                         return NotFound();
                     }
@@ -109,10 +122,10 @@ namespace TiaTeresa.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(vokabel);
+            return View(geschichte);
         }
 
-       
+        // GET: Geschichte/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -120,66 +133,34 @@ namespace TiaTeresa.Controllers
                 return NotFound();
             }
 
-            var vokabel = await _context.Vokabel
+            var geschichte = await _context.Geschichte
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (vokabel == null)
+            if (geschichte == null)
             {
                 return NotFound();
             }
 
-            return View(vokabel);
+            return View(geschichte);
         }
 
-
+        // POST: Geschichte/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var vokabel = await _context.Vokabel.FindAsync(id);
-            if (vokabel != null)
+            var geschichte = await _context.Geschichte.FindAsync(id);
+            if (geschichte != null)
             {
-                _context.Vokabel.Remove(vokabel);
+                _context.Geschichte.Remove(geschichte);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool VokabelExists(int id)
+        private bool GeschichteExists(int id)
         {
-            return _context.Vokabel.Any(e => e.Id == id);
-        }
-
-
-        #endregion
-
-        public  IActionResult Trainer()
-        {
-            Random z = new Random();
-            int randomIndex = z.Next(0, _context.Vokabel.Count());
-            
-            Vokabel vokabel = _context.Vokabel.ToList()[randomIndex];
-
-            return View(vokabel);
-        }
-        
-        //Trainer Vergleich -> Ergebnis-String an View
-        [HttpPost]
-        public IActionResult Trainer(string eingabe, string fragedeutsch)
-        {
-            string ergebnis = null;
-
-
-            if (eingabe.Length >= 3 &&  fragedeutsch.ToLower().Contains(eingabe.ToLower()))
-                ergebnis = "Korrekt!";
-            else
-            { 
-                ergebnis = $"Falsch! Die richtige Antwort wäre {fragedeutsch}";
-                
-            }
-
-
-            return Content(ergebnis);
+            return _context.Geschichte.Any(e => e.Id == id);
         }
     }
 }

@@ -1,0 +1,33 @@
+﻿@model TiaTeresa.Models.Geschichte
+
+@{
+    ViewData["Title"] = "Details";
+    var deutsch = ViewBag.Deutsch as string[];
+    var spanisch = ViewBag.Spanisch as string[];
+}
+
+<div>
+    <h4>Geschichte</h4>
+    <hr />
+    <dl>
+        <center><h1>@Html.DisplayFor(model => model.TitelSpanisch)</h1></center>
+
+  
+        <dd class = "col-sm-10">
+
+            @foreach (string satz in spanisch)
+            {
+                <span class="spanisch-satz" data-deutsch="@deutsch[Array.IndexOf(spanisch, satz)]">@satz<br /></span>
+            }
+
+
+
+
+		</dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
