@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TiaTeresa.Models;
 
@@ -10,9 +11,11 @@ using TiaTeresa.Models;
 namespace TiaTeresa.Migrations
 {
     [DbContext(typeof(TiaTeresaContext))]
-    partial class TiaTeresaContextModelSnapshot : ModelSnapshot
+    [Migration("20250507133924_AddIdentityOnly")]
+    partial class AddIdentityOnly
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.5");
@@ -213,6 +216,36 @@ namespace TiaTeresa.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("TiaTeresa.Models.Geschichte", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Deutsch")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Niveau")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Spanisch")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TitelDeutsch")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TitelSpanisch")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Geschichte");
+                });
 
             modelBuilder.Entity("TiaTeresa.Models.Vokabel", b =>
                 {

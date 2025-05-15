@@ -1,6 +1,5 @@
 ﻿@model Vokabel
 
-
 <div class="container text-center mt-4">
     <div class="d-flex justify-content-center align-items-center gap-3 mt-3">
         <h5 class="mb-0">
@@ -19,32 +18,22 @@
     </form>
 
     <div id="ergebnis" class="mt-3 fs-5 fw-bold"></div>
-
- 
 </div>
-
-
-
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    // Anzeige der aktuellen Frage
     let runden = parseInt(localStorage.getItem("runden") ?? "0");
     document.getElementById("frageNummer").innerText = runden + 1;
 
     let korrekt = parseInt(localStorage.getItem("korrekt") ?? "0");
     document.getElementById("korrekt").innerText = korrekt;
 
-
-    //Local Storage löschen
-	$("#clearlocalstorage").on("click", function () {
-		localStorage.clear();
-		alert("Die Punkte wurden zurückgesetzt");
+    $("#clearlocalstorage").on("click", function () {
+        localStorage.clear();
+        alert("Die Punkte wurden zurückgesetzt");
         location.reload();
-	});
+    });
 
-
-    // Formular absenden + ausgabe mit Timeout + zählen
     $("#trainerForm").on("submit", function (e) {
         $("#trainerForm input[type=submit]").prop("disabled", true);
         e.preventDefault();
@@ -54,27 +43,25 @@
             url: "@Url.Action("Trainer", "Vokabel")",
             data: $(this).serialize(),
             success: function (response) {
-                        if (response.includes("Korrekt")) {
-                             $("#ergebnis").css("color", "green");}
-                        else { 
-                             $("#ergebnis").css("color", "red");}
+                if (response.includes("Korrekt")) {
+                    $("#ergebnis").css("color", "green");
+                } else {
+                    $("#ergebnis").css("color", "red");
+                }
 
-    $("#ergebnis").text(response);
+                $("#ergebnis").text(response);
 
-
-                    runden++;
-                    if (response.includes("Korrekt")) {
+                runden++;
+                if (response.includes("Korrekt")) {
                     korrekt++;
-                    }
+                }
 
-                    localStorage.setItem("runden", runden);
-                    localStorage.setItem("korrekt", korrekt);
+                localStorage.setItem("runden", runden);
+                localStorage.setItem("korrekt", korrekt);
 
-                        setTimeout(function () {
-                        location.reload();
-                        }, 1700); 
-
-
+                setTimeout(function () {
+                    location.reload();
+                }, 1700);
             }
         });
     });

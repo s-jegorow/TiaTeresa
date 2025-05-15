@@ -18,15 +18,30 @@ namespace TiaTeresa.Controllers
         {
             _context = context;
         }
-        
-        // GET: Vokabel INDEX METHODE
-        public async Task<IActionResult> Index()
+
+        // GET: Vokabel Index mit Pagination
+        public async Task<IActionResult> Index(int? page)
         {
-            return View(await _context.Vokabel.ToListAsync());
+            int pageSize = 10;
+            int pageNumber = page ?? 1;
+
+            var query = _context.Vokabel.AsNoTracking();
+
+            var totalCount = await query.CountAsync();
+            var vokabeln = await query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            ViewBag.CurrentPage = pageNumber;
+            ViewBag.TotalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
+
+            return View(vokabeln);
         }
 
 
-   #region CRUD aus Scaffold
+
+        #region CRUD aus Scaffold
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -170,7 +185,7 @@ namespace TiaTeresa.Controllers
             string ergebnis = null;
 
 
-            if (eingabe.Length >= 3 &&  fragedeutsch.ToLower().Contains(eingabe.ToLower()))
+            if (eingabe != null && eingabe.Length >= 3 &&  fragedeutsch.ToLower().Contains(eingabe.ToLower()))
                 ergebnis = "Korrekt!";
             else
             { 

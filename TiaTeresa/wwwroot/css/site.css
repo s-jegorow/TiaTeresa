@@ -2,11 +2,6 @@ html {
   font-size: 14px;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
@@ -17,14 +12,14 @@ html {
   min-height: 100%;
 }
 
-body {
+body 
+{
   margin-bottom: 60px;
+  padding-bottom: 80px;
 }
 
 
-
-
-/* Tooltipp*/
+ Tooltipp
 
 .spanisch-satz {
     position: relative;
@@ -35,9 +30,9 @@ body {
     content: attr(data-deutsch);
     font-size: x-small;
     position: absolute;
-    bottom: 100%; /* Tooltipp über Text */
+    bottom: 100%;  Tooltipp über Text 
     left: 50%;
-    transform: translateX(-50%); /* Zentral */
+    transform: translateX(-50%);
     padding: 5px;
     background-color: rgba(0, 0, 0, 0.7);
     color: white;
@@ -46,7 +41,7 @@ body {
     opacity: 0;
     transition: opacity 0.2s;
     white-space: nowrap;
-    z-index: 1; /* Vor Text */
+    z-index: 1;  Vor Text 
 }
 
 .spanisch-satz:hover::after {

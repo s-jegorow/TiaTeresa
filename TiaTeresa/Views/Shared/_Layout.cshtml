@@ -32,7 +32,9 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Geschichte" asp-action="Index">Geschichten</a>
                         </li>
                     </ul>
+                    <partial name="_LoginPartial" /> <!-- HIER ist korrekt -->
                 </div>
+
             </div>
         </nav>
     </header>
@@ -51,5 +53,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+  
+    
 </body>
 </html>

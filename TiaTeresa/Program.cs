@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TiaTeresa.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace TiaTeresa
 {
@@ -17,6 +18,12 @@ namespace TiaTeresa
             builder.Configuration.GetConnectionString("MyConnection"))
             );
 
+            builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+            })
+            .AddEntityFrameworkStores<TiaTeresaContext>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -31,13 +38,13 @@ namespace TiaTeresa
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
+            app.MapRazorPages();
             app.Run();
         }
     }
