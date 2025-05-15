@@ -22,8 +22,8 @@ Aktuell:
 
 ## Features
 
-- Benutzer-Login und Fortschrittsspeicherung
-- Lückentests und Multiple-Choice-Vokabeltrainer
+- Benutzer-Login
+- Vokabeltest
 - Kurzgeschichten mit satzweiser Übersetzung
 - Administrationsbereich zum Verwalten von Inhalten
 
