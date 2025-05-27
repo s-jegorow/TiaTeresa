@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -59,12 +60,13 @@ namespace TiaTeresa.Controllers
             return View(vokabel);
         }
 
-      
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Spanisch,Deutsch")] Vokabel vokabel)
@@ -78,7 +80,7 @@ namespace TiaTeresa.Controllers
             return View(vokabel);
         }
 
-      
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -94,7 +96,7 @@ namespace TiaTeresa.Controllers
             return View(vokabel);
         }
 
-        
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Spanisch,Deutsch")] Vokabel vokabel)
@@ -127,7 +129,7 @@ namespace TiaTeresa.Controllers
             return View(vokabel);
         }
 
-       
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -145,7 +147,7 @@ namespace TiaTeresa.Controllers
             return View(vokabel);
         }
 
-
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

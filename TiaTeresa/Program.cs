@@ -24,7 +24,19 @@ namespace TiaTeresa
             })
             .AddEntityFrameworkStores<TiaTeresaContext>();
 
+            builder.Logging.ClearProviders();
+            builder.Logging.AddConsole();
+            builder.Logging.AddAzureWebAppDiagnostics();
+
+
             var app = builder.Build();
+            
+            using (var scope = app.Services.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<TiaTeresaContext>();
+                db.Database.Migrate();
+            }
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

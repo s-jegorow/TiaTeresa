@@ -3,7 +3,10 @@
 
 
 <p>
-    <a asp-action="Create">Neue Geschichte</a>
+     @if (User.Identity.IsAuthenticated)
+                {
+                     <a asp-action="Create">Neue Geschichte</a>
+                }
 </p>
 <table class="table table-striped">
     <thead>

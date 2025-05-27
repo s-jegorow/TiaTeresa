@@ -15,9 +15,9 @@
 
             @foreach (string satz in spanisch)
             {
-                <span class="spanisch-satz" data-deutsch="@deutsch[Array.IndexOf(spanisch, satz)]">@satz<br /></span>
+                <span class="spanisch-satz" data-deutsch="@deutsch[Array.IndexOf(spanisch, satz)]">@satz</span>
             }
-
+            <br />
 
 
 
@@ -26,6 +26,10 @@
 </div>
 
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+     @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> 
+                }
+                |
     <a asp-action="Index">Back to List</a>
 </div>
