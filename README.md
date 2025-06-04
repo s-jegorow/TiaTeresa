@@ -10,6 +10,10 @@ Aktuell:
 -  **Admin-Bereich** CRUD-Funktionen auf einen Admin-Bereich ausgelagert
 
 ---
+## Live-Demo  
+[App auf Azure ansehen](https://tiateresa.sebastianjegorow.de)
+
+---
 
 ## Verwendete Technologien
 
