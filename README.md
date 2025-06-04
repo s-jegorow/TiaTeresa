@@ -31,5 +31,6 @@ Aktuell:
 ## Anstehende Updates
 
 - Persönlicher Userbereich mit eigenen Vokabeln
+- Passwort-Rücksetzung
 
 ![Screenshot](screenshottia.jpg)
