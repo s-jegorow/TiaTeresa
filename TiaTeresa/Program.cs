@@ -20,7 +20,7 @@ namespace TiaTeresa
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
             {
-                options.SignIn.RequireConfirmedAccount = false;
+                options.SignIn.RequireConfirmedAccount = true;
             })
             .AddEntityFrameworkStores<TiaTeresaContext>();
 

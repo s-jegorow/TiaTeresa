@@ -1,3 +1,15 @@
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+    a:hover {
+        color: #000;
+        text-decoration: underline;
+    }
+
+
+
 html {
     font-size: 14px;
 }
@@ -45,3 +57,10 @@ body {
         visibility: visible;
         opacity: 1;
     }
+
+button {
+    font-size: 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}

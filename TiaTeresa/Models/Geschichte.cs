@@ -9,6 +9,9 @@
         public string Spanisch { get; set; }
         public string Deutsch { get; set; }
         public string Niveau { get; set; }
+        public string? Bild { get; set; }
+        public string? Audio { get; set; }
+
 
     }
 }

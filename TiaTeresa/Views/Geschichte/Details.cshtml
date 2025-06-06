@@ -4,6 +4,7 @@
     ViewData["Title"] = "Details";
     var deutsch = ViewBag.Deutsch as string[];
     var spanisch = ViewBag.Spanisch as string[];
+    var audio = Model.Audio;
 }
 
 <div>
@@ -25,11 +26,45 @@
     </dl>
 </div>
 
+<!--<p>DEBUG: Audio = "@Model.Audio"</p>-->
+
+@if (!string.IsNullOrWhiteSpace(audio))
+{
+<div>
+    <center>
+        <img src="/images/tiateresaplayer.png" alt="Tia Teresa liest" style="width:200px;" />
+
+        <p>Escucha a Tía Teresa:</p>
+        <audio id="player" src="@audio"></audio>
+        <button id="playBtn">▶</button>
+
+        <script>
+            const player = document.getElementById('player');
+            const btn = document.getElementById('playBtn');
+
+            btn.onclick = () => {
+              if (player.paused) {
+                player.play();
+                btn.textContent = '⏸';
+              } else {
+                player.pause();
+                btn.textContent = '▶';
+              }
+            };
+
+            player.onended = () => {
+              btn.textContent = '▶';
+            };
+        </script>
+
+    </center>
+</div>
+}
 <div>
      @if (User.Identity.IsAuthenticated)
                 {
                     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> 
                 }
-                |
-    <a asp-action="Index">Back to List</a>
+                
+    <a asp-action="Index">Zurück</a>
 </div>

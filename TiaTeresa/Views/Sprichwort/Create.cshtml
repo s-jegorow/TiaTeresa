@@ -1,0 +1,54 @@
+@model TiaTeresa.Models.Sprichwort
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Sprichwort</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Spanisch" class="control-label"></label>
+                <input asp-for="Spanisch" class="form-control" />
+                <span asp-validation-for="Spanisch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Deutsch" class="control-label"></label>
+                <input asp-for="Deutsch" class="form-control" />
+                <span asp-validation-for="Deutsch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BedeutungSpanisch" class="control-label"></label>
+                <input asp-for="BedeutungSpanisch" class="form-control" />
+                <span asp-validation-for="BedeutungSpanisch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BedeutungDeutsch" class="control-label"></label>
+                <input asp-for="BedeutungDeutsch" class="form-control" />
+                <span asp-validation-for="BedeutungDeutsch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bilddatei" class="control-label"></label>
+                <input asp-for="Bilddatei" class="form-control" />
+                <span asp-validation-for="Bilddatei" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

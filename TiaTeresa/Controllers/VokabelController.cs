@@ -26,7 +26,7 @@ namespace TiaTeresa.Controllers
             int pageSize = 10;
             int pageNumber = page ?? 1;
 
-            var query = _context.Vokabel.AsNoTracking();
+            var query = _context.Vokabel;
 
             var totalCount = await query.CountAsync();
             var vokabeln = await query

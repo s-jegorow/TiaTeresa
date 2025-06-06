@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TiaTeresa.Models;
 
@@ -10,9 +11,11 @@ using TiaTeresa.Models;
 namespace TiaTeresa.Migrations
 {
     [DbContext(typeof(TiaTeresaContext))]
-    partial class TiaTeresaContextModelSnapshot : ModelSnapshot
+    [Migration("20250606081050_Geschichte-Audio")]
+    partial class GeschichteAudio
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.11");
@@ -220,9 +223,11 @@ namespace TiaTeresa.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Audio")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Bild")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Deutsch")

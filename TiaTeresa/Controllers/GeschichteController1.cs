@@ -22,7 +22,7 @@ namespace TiaTeresa.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var alleGeschichten =  _context.Geschichte.ToList();
+            var alleGeschichten = _context.Geschichte.ToList();
 
 
             return View(alleGeschichten);
@@ -30,7 +30,7 @@ namespace TiaTeresa.Controllers
 
 
 
-        // GET: Geschichte/Details/5
+      
         public async Task<IActionResult> Details(int? id)
         {
 
@@ -53,20 +53,17 @@ namespace TiaTeresa.Controllers
             return View(geschichte);
         }
 
-        // GET: Geschichte/Create
         [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Geschichte/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+   
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,TitelSpanisch,TitelDeutsch,Spanisch,Deutsch,Niveau")] Geschichte geschichte)
+        public async Task<IActionResult> Create([Bind("Id,TitelSpanisch,TitelDeutsch,Spanisch,Deutsch,Niveau,Bild,Audio")] Geschichte geschichte)
         {
             if (ModelState.IsValid)
             {
@@ -77,7 +74,7 @@ namespace TiaTeresa.Controllers
             return View(geschichte);
         }
 
-        // GET: Geschichte/Edit/5
+    
         [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -94,13 +91,11 @@ namespace TiaTeresa.Controllers
             return View(geschichte);
         }
 
-        // POST: Geschichte/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,TitelSpanisch,TitelDeutsch,Spanisch,Deutsch,Niveau")] Geschichte geschichte)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,TitelSpanisch,TitelDeutsch,Spanisch,Deutsch,Niveau,Bild,Audio")] Geschichte geschichte)
         {
             if (id != geschichte.Id)
             {
@@ -130,7 +125,7 @@ namespace TiaTeresa.Controllers
             return View(geschichte);
         }
 
-        // GET: Geschichte/Delete/5
+
         [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -149,7 +144,6 @@ namespace TiaTeresa.Controllers
             return View(geschichte);
         }
 
-        // POST: Geschichte/Delete/5
         [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

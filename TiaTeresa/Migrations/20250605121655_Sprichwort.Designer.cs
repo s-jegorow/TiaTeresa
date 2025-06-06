@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TiaTeresa.Models;
 
@@ -10,12 +11,14 @@ using TiaTeresa.Models;
 namespace TiaTeresa.Migrations
 {
     [DbContext(typeof(TiaTeresaContext))]
-    partial class TiaTeresaContextModelSnapshot : ModelSnapshot
+    [Migration("20250605121655_Sprichwort")]
+    partial class Sprichwort
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.11");
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.5");
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -219,12 +222,6 @@ namespace TiaTeresa.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Audio")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Bild")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Deutsch")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -255,18 +252,6 @@ namespace TiaTeresa.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("BedeutungDeutsch")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("BedeutungSpanisch")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Bilddatei")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("Deutsch")
                         .IsRequired()

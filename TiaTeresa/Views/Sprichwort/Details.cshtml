@@ -1,0 +1,31 @@
+@model TiaTeresa.Models.Sprichwort
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<center>
+
+    <img src="@Model.Bilddatei" alt="Bild zum Sprichwort" style="max-width: 300px;" />
+
+    <span class="spanisch-satz" data-deutsch="@Model.Deutsch"><h2>@Model.Spanisch</h2></span>
+<p>
+    <span class="spanisch-satz" data-deutsch="@Model.BedeutungDeutsch">
+            Explicación: @Model.BedeutungSpanisch
+    </span>
+</p>
+</center>
+
+
+    
+
+<div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a>
+    }
+    
+    <a asp-action="Index">Zurück</a>
+</div>
