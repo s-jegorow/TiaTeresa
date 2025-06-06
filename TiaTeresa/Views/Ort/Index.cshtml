@@ -1,0 +1,75 @@
+﻿@model IEnumerable<TiaTeresa.Models.Ort>
+
+@{
+    ViewData["Title"] = "Orte";
+}
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<div class="mb-4">
+    <div id="map" style="height: 400px; border: 1px solid #ccc; border-radius: 8px;"></div>
+</div>
+
+<script>
+    var map = L.map('map').setView([40.0, -3.7], 5);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    @foreach (var ort in Model)
+    {
+        if (!string.IsNullOrWhiteSpace(ort.lat) && !string.IsNullOrWhiteSpace(ort.lon))
+        {
+            var lat = ort.lat.Replace(",", ".");
+            var lon = ort.lon.Replace(",", ".");
+            var link = Url.Action("Details", "Ort", new { id = ort.Id });
+            <text>
+                        L.marker([@lat, @lon]).addTo(map)
+                            .bindPopup(`<a href='@link'>@ort.Name</a>`);
+            </text>
+        }
+    }
+</script>
+
+
+@if (User.Identity.IsAuthenticated)
+{
+<p>
+    <a asp-action="Create" class="btn btn-success mb-3">Ort hinzufügen</a>
+</p>
+
+<table class="table table-bordered table-hover align-middle">
+    <thead class="table-light">
+        <tr>
+            <th>Name</th>
+            <th>Spanische Beschreibung</th>
+            <th>Deutsche Beschreibung</th>
+            <th>Wikipedia</th>
+            <th>Bild</th>
+            <th>Aktionen</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.BeschreibungSpanisch</td>
+                <td>@item.BeschreibungDeutsch</td>
+                <td>
+                    <a href="@item.URL" target="_blank" class="btn btn-sm btn-outline-info">Link</a>
+                </td>
+                <td>
+                    <img src="@item.Bild" alt="Bild" style="max-height: 50px;" />
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Details</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Bearbeiten</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Löschen</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+}

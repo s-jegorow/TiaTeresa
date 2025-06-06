@@ -20,7 +20,7 @@ namespace TiaTeresa.Controllers
             _context = context;
         }
 
-        // GET: Vokabel Index mit Pagination
+       
         public async Task<IActionResult> Index(int? page)
         {
             int pageSize = 10;

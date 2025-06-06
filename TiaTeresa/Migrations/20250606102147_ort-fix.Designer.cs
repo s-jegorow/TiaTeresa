@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TiaTeresa.Models;
 
@@ -10,9 +11,11 @@ using TiaTeresa.Models;
 namespace TiaTeresa.Migrations
 {
     [DbContext(typeof(TiaTeresaContext))]
-    partial class TiaTeresaContextModelSnapshot : ModelSnapshot
+    [Migration("20250606102147_ort-fix")]
+    partial class ortfix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.11");
@@ -265,10 +268,6 @@ namespace TiaTeresa.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Bild")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("BildCopyright")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

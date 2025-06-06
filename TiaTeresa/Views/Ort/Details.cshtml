@@ -1,0 +1,44 @@
+﻿@model TiaTeresa.Models.Ort
+
+@{
+    var deutsch = ViewBag.Deutsch as string[];
+    var spanisch = ViewBag.Spanisch as string[];
+    ViewData["Title"] = "Details";
+}
+
+<div class="container py-4" style="max-width: 900px;">
+    <div class="row g-4 align-items-start">
+        <div class="col-md-5">
+            <div class="bg-white p-2 border shadow-sm rounded-1 text-center" style="width: 100%; max-width: 360px;">
+                <img src="@Model.Bild" alt="@Model.Name" class="img-fluid mb-1" style="max-height: 220px;" />
+                <div class="small text-muted">@Model.Name</div>
+                <div class="text-muted" style="font-size: 0.65rem; line-height: 1.2;">
+                    @Html.Raw(Model.BildCopyright)
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-7">
+            <h2 class="fw-bold">@Model.Name</h2>
+            <hr />
+            <div class="mb-3">
+                @foreach (string satz in spanisch)
+                {
+                        <span class="spanisch-satz" data-deutsch="@deutsch[Array.IndexOf(spanisch, satz)]">@satz</span>
+                }
+
+            </div>
+            <div>
+                <a href="@Model.URL" target="_blank" class="text-muted">@Model.URL</a>
+            </div>
+            <div class="mt-4 d-flex gap-2">
+                @if (User.Identity.IsAuthenticated)
+                {
+                        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Bearbeiten</a>
+                }
+                <a asp-action="Index" class="btn btn-secondary">Zurück</a>
+            </div>
+        </div>
+    </div>
+</div>

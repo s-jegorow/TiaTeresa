@@ -12,5 +12,6 @@ namespace TiaTeresa.Models
         public DbSet<Vokabel> Vokabel { get; set; }
         public DbSet<Geschichte> Geschichte { get; set; }
         public DbSet<Sprichwort> Sprichwort { get; set; }
+        public DbSet<Ort> Ort { get; set; }
     }
 }

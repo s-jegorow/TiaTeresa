@@ -1,0 +1,70 @@
+﻿@model TiaTeresa.Models.Ort
+
+@{
+    ViewData["Title"] = "Ort bearbeiten";
+}
+
+<h2 class="mb-4">Ort bearbeiten</h2>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="Id" />
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label asp-for="Name" class="form-label fw-bold"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger small"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="URL" class="form-label fw-bold">Wikipedia-Link</label>
+                    <input asp-for="URL" class="form-control" />
+                    <span asp-validation-for="URL" class="text-danger small"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="BeschreibungSpanisch" class="form-label fw-bold"></label>
+                    <input asp-for="BeschreibungSpanisch" class="form-control" />
+                    <span asp-validation-for="BeschreibungSpanisch" class="text-danger small"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="BeschreibungDeutsch" class="form-label fw-bold"></label>
+                    <input asp-for="BeschreibungDeutsch" class="form-control" />
+                    <span asp-validation-for="BeschreibungDeutsch" class="text-danger small"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Bild" class="form-label fw-bold">Bild-URL</label>
+                    <input asp-for="Bild" class="form-control" />
+                    <span asp-validation-for="Bild" class="text-danger small"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BildCopyright" class="control-label"></label>
+                    <input asp-for="BildCopyright" class="form-control" />
+                    <span asp-validation-for="BildCopyright" class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <label asp-for="lat" class="form-label fw-bold">Breitengrad (lat)</label>
+                    <input asp-for="lat" class="form-control" />
+                    <span asp-validation-for="lat" class="text-danger small"></span>
+                </div>
+                <div class="col-md-3">
+                    <label asp-for="lon" class="form-label fw-bold">Längengrad (lon)</label>
+                    <input asp-for="lon" class="form-control" />
+                    <span asp-validation-for="lon" class="text-danger small"></span>
+                </div>
+            </div>
+
+            <div class="mt-4 d-flex justify-content-between">
+                <a asp-action="Index" class="btn btn-secondary">Zurück zur Übersicht</a>
+                <button type="submit" class="btn btn-primary">Speichern</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
