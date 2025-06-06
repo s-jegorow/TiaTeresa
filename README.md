@@ -10,6 +10,7 @@ Aktuell:
 -  **Admin-Bereich** CRUD-Funktionen auf einen Admin-Bereich ausgelagert
 -  **Vokabeltest** mit Punkten
 -  **Sprichwörter** mit Übersetzung und Erklärung
+-  **Sightseeing** Historische und Interessante Orte mit Beschreibung und Bebilderung. Navigation über Karte.
 
 
 ---
@@ -25,6 +26,7 @@ Aktuell:
 - Bootstrap
 - JavaScript (DOM-Manipulation, Hover-Effekte)
 - SQLite / SQL Server (je nach Einsatz)
+- Leaflet API für die Karte
 
 ---
 
