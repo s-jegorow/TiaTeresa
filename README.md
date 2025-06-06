@@ -33,4 +33,4 @@ Aktuell:
 - Persönlicher Userbereich mit individuellen Inhalten
 - Passwort-Rücksetzung
 
-![Screenshot](tiascreenshot.jpg)
+![Screenshot](tiascreenshot.png)
