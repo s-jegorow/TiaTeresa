@@ -1,13 +1,16 @@
 # TiaTeresa
 
-Webanwendung, entwickelt als Hobbyübung im Rahmen des ASP.NET-Seminars.
+Webanwendung, entwickelt als Hobbyübung begleitend zum ASP.NET-Seminars.
 
-**TiaTeresa** ist eine Spanisch-Lernplattform, die als Hobby-Projekt parallel zum ASP.Net Kurs an der Akademie Dr.Heuer entwickelt wird. Die Webapplikation wird modular um Funktionen ergänzt. 
+**TiaTeresa** ist eine Spanisch-Lernplattform, die von mir als Hobby-Projekt parallel zum ASP.Net Kurs an der Akademie Dr.Heuer entwickelt wird. Die Webapplikation wird modular um Funktionen ergänzt. 
 
 Aktuell:
--  **Vokabeltrainer** mit systematischem Aufbau
--  **Kurzgeschichten** auf Spanisch mit deutscher Übersetzung per Tooltip
+-  **Vokabeltrainer** 
+-  **Kurzgeschichten** auf Spanisch mit deutscher Übersetzung per Tooltip und Vorlesefunktion
 -  **Admin-Bereich** CRUD-Funktionen auf einen Admin-Bereich ausgelagert
+-  **Vokabeltest** mit Punkten
+-  **Sprichwörter** mit Übersetzung und Erklärung
+
 
 ---
 ## Live-Demo  
@@ -25,16 +28,9 @@ Aktuell:
 
 ---
 
-## Features
-
-- Benutzer-Login
-- Vokabeltest
-- Kurzgeschichten mit satzweiser Übersetzung
-- Administrationsbereich zum Verwalten von Inhalten
-
 ## Anstehende Updates
 
-- Persönlicher Userbereich mit eigenen Vokabeln
+- Persönlicher Userbereich mit individuellen Inhalten
 - Passwort-Rücksetzung
 
 ![Screenshot](screenshottia.jpg)
