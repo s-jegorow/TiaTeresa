@@ -27,12 +27,15 @@ Aktuell:
 - JavaScript (DOM-Manipulation, Hover-Effekte)
 - SQLite / SQL Server (je nach Einsatz)
 - Leaflet API für die Karte
+- TTS-Audio mit Elevenlabs
 
 ---
 
 ## Anstehende Updates
 
+- Sightseeing: Überarbeitung der Detail-View 
 - Persönlicher Userbereich mit individuellen Inhalten
 - Passwort-Rücksetzung
+
 
 ![Screenshot](tiascreenshot.png)
