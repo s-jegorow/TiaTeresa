@@ -1,6 +1,6 @@
 # TiaTeresa
 
-Webanwendung, entwickelt als Hobbyübung begleitend zum ASP.NET-Seminars.
+Webanwendung, entwickelt als Hobbyübung begleitend zum ASP.NET und Azure Developer Associate Seminarblock.
 
 **TiaTeresa** ist eine Spanisch-Lernplattform, die von mir als Hobby-Projekt parallel zum ASP.Net Kurs an der Akademie Dr.Heuer entwickelt wird. Die Webapplikation wird modular um Funktionen ergänzt. 
 
