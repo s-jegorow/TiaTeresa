@@ -13,7 +13,7 @@ Aktuell:
 
 ---
 ## Live-Demo  
-[App auf Azure ansehen](https://tiateresa.sebastianjegorow.de)
+[Tia Teresa](https://tiateresa.azurewebsites.net/)
 
 ---
 
