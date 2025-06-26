@@ -11,43 +11,58 @@
             <img src="/images/bienvenidos.jpg" class="shadow-sm rounded-3" width="250" alt="Bienvenidos" />
         </div>
 
-        <!-- Kachelbereich mit freier Mitte -->
-        <div class="row justify-content-center g-4">
+    </div> <!-- /container -->
+    <!-- Grauer Hintergrundblock außerhalb der container-Klasse -->
+    <div style="background-color: #fff; padding: 1rem 0;">
+        <div class="container">
+            <div class="row justify-content-center gx-5 gy-5">
 
-            <!-- Sprichwort -->
-            <div class="col-md-4 col-lg-4">
-                <div class="card border-0 shadow-sm rounded-4" style="background-color: #e6f0ff;">
-                    <div class="card-header bg-white border-bottom-0">
-                        <h5 class="mb-0 text-primary">Sprichwort des Tages</h5>
-                    </div>
-                    <div class="card-body">
-                        <blockquote class="blockquote">
-                            <p>@ViewBag.Sprichwort</p>
-                            <footer class="blockquote-footer">@ViewBag.SprichwortÜbersetzung</footer>
-                        </blockquote>
-                        <a href="/Sprichwort" class="btn btn-sm mt-3" style="background-color: #0d6efd; color: white;">Mehr Sprichwörter</a>
+                <!-- Sprichwort -->
+                <div class="col-md-4 col-lg-4">
+                    <div class="card border-0 shadow-sm rounded-4" style="background-color: #e6f0ff;">
+                        <div class="card-header bg-transparent border-bottom-0">
+                            <h5 class="mb-0 fw-semibold" style="color: #000;">Sprichwort des Tages</h5>
+                        </div>
+                        <div class="card-body">
+                            <blockquote class="blockquote">
+                                <p>@ViewBag.Sprichwort</p>
+                                <footer class="blockquote-footer">@ViewBag.SprichwortÜbersetzung</footer>
+                            </blockquote>
+                            <a href="/Sprichwort" class="btn btn-sm mt-3" style="background-color: #0d6efd; color: white;">Mehr Sprichwörter</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Leere Mitte -->
-            <div class="col-md-4 col-lg-2"></div>
-
-            <!-- Vokabel -->
-            <div class="col-md-4 col-lg-4">
-                <div class="card border-0 shadow-sm rounded-4" style="background-color: #e6f0ff;">
-                    <div class="card-header bg-white border-bottom-0">
-                        <h5 class="mb-0 text-primary">Vokabel des Tages</h5>
-                    </div>
-                    <div class="card-body">
-                        <h4>@ViewBag.Vokabel</h4>
-                        <p>@ViewBag.VokabelÜbersetzung</p>
-                        <a href="/Vokabel" class="btn btn-sm mt-3" style="background-color: #0d6efd; color: white;">Zur Vokabelliste</a>
+                <!-- Mitte: Teresa -->
+                <div class="col-md-4 col-lg-2">
+                    <div class="card border-0 shadow-sm rounded-4 text-center" style="background-color: #e6f0ff;">
+                        <div class="card-header bg-transparent border-bottom-0">
+                            <h5 class="mb-0 fw-semibold" style="color: #000;">Wer ist Teresa</h5>
+                        </div>
+                        <div class="card-body">
+                            <img src="/images/tiateresaprofil.png" class="shadow-sm rounded-3 mt-2" width="120" alt="Tia Teresa" />
+                        </div>
                     </div>
                 </div>
+
+                <!-- Vokabel -->
+                <div class="col-md-4 col-lg-4">
+                    <div class="card border-0 shadow-sm rounded-4" style="background-color: #e6f0ff;">
+                        <div class="card-header bg-transparent border-bottom-0">
+                            <h5 class="mb-0 fw-semibold" style="color: #000;">Vokabel des Tages</h5>
+                        </div>
+                        <div class="card-body">
+                            <h4>@ViewBag.Vokabel</h4>
+                            <p>@ViewBag.VokabelÜbersetzung</p>
+                            <a href="/Vokabel" class="btn btn-sm mt-3" style="background-color: #0d6efd; color: white;">Zur Vokabelliste</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>
     </div>
 
 </body>
+
