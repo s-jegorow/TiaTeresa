@@ -9,7 +9,7 @@ Aktuell:
 -  **Vokabeltest** mit Punkten
 -  **Sprichwörter** mit Übersetzung und Erklärung
 -  **Sightseeing** Historische und Interessante Orte mit Beschreibung und Bebilderung. Navigation über Karte.
-
+-  **Startseite** Startseite mit zufälligen Inhalten und einer Vorstellung der Anwendung. Aktuell in Bearbeitung.
 
 ---
 ## Live-Demo  
@@ -31,7 +31,8 @@ Aktuell:
 
 ## Anstehende Updates
 
-- Sightseeing: Überarbeitung der Detail-View 
+- Startseite
+- Sightseeing: Überarbeitung der Detail-View
 - Persönlicher Userbereich mit individuellen Inhalten
 - Passwort-Rücksetzung
 
