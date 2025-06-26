@@ -12,7 +12,7 @@
         </div>
 
     </div> <!-- /container -->
-    <!-- Grauer Hintergrundblock außerhalb der container-Klasse -->
+  
     <div style="background-color: #fff; padding: 1rem 0;">
         <div class="container">
             <div class="row justify-content-center gx-5 gy-5">
@@ -40,7 +40,10 @@
                             <h5 class="mb-0 fw-semibold" style="color: #000;">Wer ist Teresa</h5>
                         </div>
                         <div class="card-body">
-                            <img src="/images/tiateresaprofil.png" class="shadow-sm rounded-3 mt-2" width="120" alt="Tia Teresa" />
+                            <a asp-controller="Home" asp-action="TiaTeresaProfil">
+                                <img src="/images/tiateresaprofil.png" class="shadow-sm rounded-3 mt-2" width="120" alt="Tia Teresa" />
+                            </a>
+
                         </div>
                     </div>
                 </div>

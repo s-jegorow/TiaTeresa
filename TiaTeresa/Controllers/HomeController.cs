@@ -24,6 +24,12 @@ namespace TiaTeresa.Controllers
         
         }
 
+
+        public IActionResult TiaTeresaProfil()
+        {
+            return View();
+        }
+
         
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
