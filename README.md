@@ -1,8 +1,6 @@
 # TiaTeresa
 
-Webanwendung, entwickelt als Hobbyübung begleitend zum ASP.NET-Seminars.
-
-**TiaTeresa** ist eine Spanisch-Lernplattform, die von mir als Hobby-Projekt parallel zum ASP.Net Kurs an der Akademie Dr.Heuer entwickelt wird. Die Webapplikation wird modular um Funktionen ergänzt. 
+**TiaTeresa** ist eine Spanisch-Lernplattform, die von mir als Hobby-Projekt parallel zum ASP.Net und Azure Developer Associate Seminarblock an der Akademie Dr.Heuer entwickelt wird. Die Webapplikation wird modular um Funktionen ergänzt. 
 
 Aktuell:
 -  **Vokabeltrainer** 
@@ -15,7 +13,7 @@ Aktuell:
 
 ---
 ## Live-Demo  
-[App auf Azure ansehen](https://tiateresa.sebastianjegorow.de)
+[Tia Teresa](https://tiateresa.azurewebsites.net/)
 
 ---
 
@@ -27,12 +25,15 @@ Aktuell:
 - JavaScript (DOM-Manipulation, Hover-Effekte)
 - SQLite / SQL Server (je nach Einsatz)
 - Leaflet API für die Karte
+- TTS-Audio mit Elevenlabs
 
 ---
 
 ## Anstehende Updates
 
+- Sightseeing: Überarbeitung der Detail-View 
 - Persönlicher Userbereich mit individuellen Inhalten
 - Passwort-Rücksetzung
+
 
 ![Screenshot](tiascreenshot.png)
