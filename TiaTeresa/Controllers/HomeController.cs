@@ -1,25 +1,45 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TiaTeresa.Models;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace TiaTeresa.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly TiaTeresaContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        public HomeController(ILogger<HomeController> logger, TiaTeresaContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            ViewBag.Sprichwort = "No hay mal que por bien no venga.";
-            ViewBag.Sprichwort‹bersetzung = "Kein Ungl¸ck, das nicht auch etwas Gutes bringt.";
 
-            ViewBag.Vokabel = "el paraguas";
-            ViewBag.Vokabel‹bersetzung = "der Regenschirm";
+            int seed = DateTime.Today.GetHashCode();
+            Random z = new Random(seed);
+
+            int randomIndex = z.Next(0, _context.Sprichwort.Count());
+            var tagessprichwort = _context.Sprichwort.ToList()[randomIndex];
+
+            ViewBag.Sprichwort = tagessprichwort.Spanisch;
+            ViewBag.Sprichwort‹bersetzung = tagessprichwort.Deutsch;
+
+
+        
+            Random z2 = new Random(seed);
+            int randomIndexvokabel = z2.Next(0, _context.Vokabel.Count());
+            var tagesvokabel = _context.Vokabel.ToList()[randomIndexvokabel];
+
+
+            ViewBag.Vokabel = tagesvokabel.Spanisch;
+            ViewBag.Vokabel‹bersetzung = tagesvokabel.Deutsch;
             return View();
         
         }
