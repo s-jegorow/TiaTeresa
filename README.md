@@ -32,6 +32,7 @@ Aktuell:
 ## Anstehende Updates
 
 - Startseite
+- Zahlen nach Audio erkennen
 - Sightseeing: Überarbeitung der Detail-View
 - Persönlicher Userbereich mit individuellen Inhalten
 - Passwort-Rücksetzung
