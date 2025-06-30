@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using TiaTeresa.Models;
 
 namespace TiaTeresa.Models
 {
@@ -13,5 +14,7 @@ namespace TiaTeresa.Models
         public DbSet<Geschichte> Geschichte { get; set; }
         public DbSet<Sprichwort> Sprichwort { get; set; }
         public DbSet<Ort> Ort { get; set; }
+        public DbSet<Zahl> Zahl { get; set; }
+        
     }
 }

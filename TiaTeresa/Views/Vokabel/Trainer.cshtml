@@ -1,12 +1,15 @@
 ﻿@model Vokabel
 
+<div class="d-flex justify-content-center align-items-center gap-3 mt-3">
+    <h5 class="mb-0">
+        <strong>Frage <span id="frageNummer"></span> / Punkte: <span id="korrekt"></span></strong>
+    </h5>
+    <button id="clearlocalstorage" class="btn btn-danger py-1">zurücksetzen</button>
+</div>
+
+<center><img src="/images/tiateresatest.png" alt="Tia Teresa liest" style="width:200px;" /></center>
 <div class="container text-center mt-4">
-    <div class="d-flex justify-content-center align-items-center gap-3 mt-3">
-        <h5 class="mb-0">
-            <strong>Frage <span id="frageNummer"></span> / Punkte: <span id="korrekt"></span></strong>
-        </h5>
-        <button id="clearlocalstorage" class="btn btn-danger py-1">zurücksetzen</button>
-    </div>
+    
 
     <p class="mt-3 fs-4">Was heißt <strong>@Model.Spanisch</strong> auf Deutsch?</p>
 

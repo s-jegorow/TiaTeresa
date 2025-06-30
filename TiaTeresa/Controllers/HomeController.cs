@@ -29,19 +29,19 @@ namespace TiaTeresa.Controllers
             var tagessprichwort = _context.Sprichwort.ToList()[randomIndex];
 
             ViewBag.Sprichwort = tagessprichwort.Spanisch;
-            ViewBag.Sprichwort‹bersetzung = tagessprichwort.Deutsch;
+            ViewBag.Sprichwortuebersetzung = tagessprichwort.Deutsch;
 
 
-        
+
             Random z2 = new Random(seed);
             int randomIndexvokabel = z2.Next(0, _context.Vokabel.Count());
             var tagesvokabel = _context.Vokabel.ToList()[randomIndexvokabel];
 
 
             ViewBag.Vokabel = tagesvokabel.Spanisch;
-            ViewBag.Vokabel‹bersetzung = tagesvokabel.Deutsch;
+            ViewBag.Vokabeluebersetzung = tagesvokabel.Deutsch;
             return View();
-        
+
         }
 
 
@@ -50,7 +50,7 @@ namespace TiaTeresa.Controllers
             return View();
         }
 
-        
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

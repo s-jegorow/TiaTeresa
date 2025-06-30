@@ -1,0 +1,114 @@
+﻿@model Zahl
+
+<div class="d-flex justify-content-center align-items-center gap-3 mt-3">
+        <h5 class="mb-0">
+            <strong>Frage <span id="frageNummer"></span> / Punkte: <span id="korrekt"></span></strong>
+        </h5>
+        <button id="clearlocalstorage" class="btn btn-danger py-1">zurücksetzen</button>
+    </div>
+
+<center><img src="/images/tiateresazahlen.png" alt="Tia Teresa liest" style="width:200px;" /></center>
+<div class="container text-center mt-4">
+    
+
+
+    @if (!string.IsNullOrWhiteSpace(@Model.Audio))
+    {
+           
+                                <p><strong>Hören:</strong></p>
+                            <audio id="player" src="@Model.Audio"></audio>
+                            <button id="playBtn">▶</button>
+
+                            <script>
+                                const player = document.getElementById('player');
+                                const btn = document.getElementById('playBtn');
+
+                                btn.onclick = () => {
+                                  if (player.paused) {
+                                    player.play();
+                                    btn.textContent = '⏸';
+                                  } else {
+                                    player.pause();
+                                    btn.textContent = '▶';
+                                  }
+                                };
+
+                                player.onended = () => {
+                                  btn.textContent = '▶';
+                                };
+                            </script>
+                       
+        
+    }
+
+
+    <center></center><p class="mt-3 fs-4">
+        Die gesuchte Zahl ist: 
+        <button type="button" class="btn btn-outline-secondary btn-sm" onclick="document.getElementById('zahlReveal').style.visibility = 'visible'; this.style.display='none';">
+        zeigen
+        </button>
+        <strong id="zahlReveal" style="visibility:hidden">@Model.Spanisch</strong>
+    </p></center>
+
+
+
+    <form id="trainerForm" class="d-flex flex-column align-items-center gap-2">
+        <input type="hidden" name="fragespanisch" value="@Model.Spanisch" />
+        <input type="hidden" name="fragedeutsch" value="@Model.Wert" />
+        <input type="text" id="eingabe" name="eingabe" class="form-control w-50" autocomplete="off" />
+        <button type="submit" class="btn btn-primary">Prüfen</button>
+    </form>
+
+
+
+
+
+    <div id="ergebnis" class="mt-3 fs-5 fw-bold"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    let runden = parseInt(localStorage.getItem("runden") ?? "0");
+    document.getElementById("frageNummer").innerText = runden + 1;
+
+    let korrekt = parseInt(localStorage.getItem("korrekt") ?? "0");
+    document.getElementById("korrekt").innerText = korrekt;
+
+    $("#clearlocalstorage").on("click", function () {
+        localStorage.clear();
+        alert("Die Punkte wurden zurückgesetzt");
+        location.reload();
+    });
+
+    $("#trainerForm").on("submit", function (e) {
+        $("#trainerForm input[type=submit]").prop("disabled", true);
+        e.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("Trainer", "Zahl")",
+            data: $(this).serialize(),
+            success: function (response) {
+                if (response.includes("Korrekt")) {
+                    $("#ergebnis").css("color", "green");
+                } else {
+                    $("#ergebnis").css("color", "red");
+                }
+
+                $("#ergebnis").text(response);
+
+                runden++;
+                if (response.includes("Korrekt")) {
+                    korrekt++;
+                }
+
+                localStorage.setItem("runden", runden);
+                localStorage.setItem("korrekt", korrekt);
+
+                setTimeout(function () {
+                    location.reload();
+                }, 1700);
+            }
+        });
+    });
+</script>

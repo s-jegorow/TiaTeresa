@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TiaTeresa.Models;
 
@@ -10,9 +11,11 @@ using TiaTeresa.Models;
 namespace TiaTeresa.Migrations
 {
     [DbContext(typeof(TiaTeresaContext))]
-    partial class TiaTeresaContextModelSnapshot : ModelSnapshot
+    [Migration("20250630102340_Zahl")]
+    partial class Zahl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.11");
@@ -341,28 +344,6 @@ namespace TiaTeresa.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Vokabel");
-                });
-
-            modelBuilder.Entity("TiaTeresa.Models.Zahl", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Audio")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Spanisch")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Wert")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Zahl");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

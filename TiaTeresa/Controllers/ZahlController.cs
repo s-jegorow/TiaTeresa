@@ -1,5 +1,4 @@
 ﻿using System;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,39 +10,22 @@ using TiaTeresa.Models;
 
 namespace TiaTeresa.Controllers
 {
-    
-    public class VokabelController : Controller
+    public class ZahlController : Controller
     {
         private readonly TiaTeresaContext _context;
 
-        public VokabelController(TiaTeresaContext context)
+        public ZahlController(TiaTeresaContext context)
         {
             _context = context;
         }
 
-       
-        public async Task<IActionResult> Index(int? page)
+        // GET: Zahl
+        public async Task<IActionResult> Index()
         {
-            int pageSize = 10;
-            int pageNumber = page ?? 1;
-
-            var query = _context.Vokabel;
-
-            var totalCount = await query.CountAsync();
-            var vokabeln = await query
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
-
-            ViewBag.CurrentPage = pageNumber;
-            ViewBag.TotalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
-
-            return View(vokabeln);
+            return View(await _context.Zahl.ToListAsync());
         }
 
-
-
-        #region CRUD aus Scaffold
+        // GET: Zahl/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -51,36 +33,41 @@ namespace TiaTeresa.Controllers
                 return NotFound();
             }
 
-            var vokabel = await _context.Vokabel
+            var zahl = await _context.Zahl
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (vokabel == null)
+            if (zahl == null)
             {
                 return NotFound();
             }
 
-            return View(vokabel);
+            return View(zahl);
         }
 
+        // GET: Zahl/Create
         [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
-        [Authorize]
+        // POST: Zahl/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Spanisch,Deutsch")] Vokabel vokabel)
+        public async Task<IActionResult> Create([Bind("Id,Wert,Spanisch,Audio")] Zahl zahl)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(vokabel);
+                _context.Add(zahl);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(vokabel);
+            return View(zahl);
         }
 
+        // GET: Zahl/Edit/5
         [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -89,20 +76,23 @@ namespace TiaTeresa.Controllers
                 return NotFound();
             }
 
-            var vokabel = await _context.Vokabel.FindAsync(id);
-            if (vokabel == null)
+            var zahl = await _context.Zahl.FindAsync(id);
+            if (zahl == null)
             {
                 return NotFound();
             }
-            return View(vokabel);
+            return View(zahl);
         }
 
-        [Authorize]
+        // POST: Zahl/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Spanisch,Deutsch")] Vokabel vokabel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Wert,Spanisch,Audio")] Zahl zahl)
         {
-            if (id != vokabel.Id)
+            if (id != zahl.Id)
             {
                 return NotFound();
             }
@@ -111,12 +101,12 @@ namespace TiaTeresa.Controllers
             {
                 try
                 {
-                    _context.Update(vokabel);
+                    _context.Update(zahl);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VokabelExists(vokabel.Id))
+                    if (!ZahlExists(zahl.Id))
                     {
                         return NotFound();
                     }
@@ -127,9 +117,10 @@ namespace TiaTeresa.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(vokabel);
+            return View(zahl);
         }
 
+        // GET: Zahl/Delete/5
         [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -138,49 +129,48 @@ namespace TiaTeresa.Controllers
                 return NotFound();
             }
 
-            var vokabel = await _context.Vokabel
+            var zahl = await _context.Zahl
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (vokabel == null)
+            if (zahl == null)
             {
                 return NotFound();
             }
 
-            return View(vokabel);
+            return View(zahl);
         }
 
-        [Authorize]
+        // POST: Zahl/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var vokabel = await _context.Vokabel.FindAsync(id);
-            if (vokabel != null)
+            var zahl = await _context.Zahl.FindAsync(id);
+            if (zahl != null)
             {
-                _context.Vokabel.Remove(vokabel);
+                _context.Zahl.Remove(zahl);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool VokabelExists(int id)
+        private bool ZahlExists(int id)
         {
-            return _context.Vokabel.Any(e => e.Id == id);
+            return _context.Zahl.Any(e => e.Id == id);
         }
 
 
-        #endregion
-
-        public  IActionResult Trainer()
+        public IActionResult Trainer()
         {
             Random z = new Random();
-            int randomIndex = z.Next(0, _context.Vokabel.Count());
-            
-            Vokabel vokabel = _context.Vokabel.ToList()[randomIndex];
+            int randomIndex = z.Next(0, _context.Zahl.Count());
 
-            return View(vokabel);
+            Zahl zahl = _context.Zahl.ToList()[randomIndex];
+
+            return View(zahl);
         }
-        
+
         //Trainer Vergleich -> Ergebnis-String an View
         [HttpPost]
         public IActionResult Trainer(string eingabe, string fragedeutsch)
@@ -188,16 +178,25 @@ namespace TiaTeresa.Controllers
             string ergebnis = null;
 
 
-            if (eingabe != null && eingabe.Length >= 3 &&  fragedeutsch.ToLower().Contains(eingabe.ToLower()))
+            if (eingabe != null && fragedeutsch.Equals(eingabe))
                 ergebnis = "Korrekt!";
             else
-            { 
+            {
                 ergebnis = $"Falsch! Die richtige Antwort wäre {fragedeutsch}";
-                
+
             }
 
 
             return Content(ergebnis);
         }
+
+
+
+
+
+
+
+
+
     }
 }
