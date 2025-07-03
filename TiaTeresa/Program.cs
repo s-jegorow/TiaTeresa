@@ -26,9 +26,9 @@ namespace TiaTeresa
 
             builder.Logging.ClearProviders();
             builder.Logging.AddConsole();
-            builder.Logging.AddAzureWebAppDiagnostics();
+         
 
-
+           
             var app = builder.Build();
             
             using (var scope = app.Services.CreateScope())

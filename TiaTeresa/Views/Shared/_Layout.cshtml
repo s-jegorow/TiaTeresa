@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TiaTeresa.styles.css" asp-append-version="true" />
+
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
 </head>
 <body>
     <header>
@@ -55,7 +59,7 @@
 
     <footer class="bg-light text-center text-muted py-2 mt-4 border-top small">
         <div class="container">
-            &copy; 2025 - Sebastian Jegorow - <a asp-controller="Home" asp-action="Privacy" class="text-muted">Privacy</a>
+            <p>&copy; @DateTime.Now.Year – Sebastian Jegorow <a href="/Home/Impressum">Impressum</a></p>
         </div>
     </footer>
 

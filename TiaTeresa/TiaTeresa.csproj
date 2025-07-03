@@ -5,9 +5,16 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>54c09f0e-2818-4296-b19c-d3736b89da3a</UserSecretsId>
+    <ApplicationInsightsResourceId>/subscriptions/d03776c3-3adb-434b-aa81-7d2cba54ec54/resourceGroups/Azure-Klaus-TiaTeresa/providers/microsoft.insights/components/TiaTeresaPingApp</ApplicationInsightsResourceId>
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\favicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Identity" Version="1.13.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.11" />
@@ -25,5 +32,10 @@
 		<Content Include="TiaTeresa.db">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="wwwroot\apple-touch-icon.png" />
+	  <None Include="wwwroot\favicon.ico" />
 	</ItemGroup>
 </Project>
