@@ -1,4 +1,4 @@
-# TiaTeresa
+# Tia Teresa
 
 **TiaTeresa** ist eine Spanisch-Lernplattform, die von mir als Hobby-Projekt parallel zum ASP.Net und Azure Developer Associate Seminarblock an der Akademie Dr.Heuer entwickelt wird. Die Webapplikation wird modular um Funktionen ergänzt. 
 
@@ -14,7 +14,7 @@ Aktuell:
 
 ---
 ## Live-Demo  
-[Tia Teresa](https://tiateresa.azurewebsites.net/)
+[Tia Teresa](https://tia-teresa.azurewebsites.net/)
 
 ---
 
