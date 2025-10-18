@@ -14,7 +14,7 @@ Aktuell:
 
 ---
 ## Live-Demo  
-[Tia Teresa](https://tia-teresa.azurewebsites.net/)
+[Tia Teresa](https://tia-teresa.azurewebsites.net/) (loading might take a few seconds due to the basic Azure service plan)
 
 ---
 
